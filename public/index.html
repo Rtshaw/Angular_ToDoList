@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body ng-app="App" ng-controller="todosControl">
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="number">#</th>
+                <th class="title">項目</th>
+                <th class="control">動作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in todos">
+                <td scope="row">
+                    {{x.id}}
+                </td>
+                <td>
+                    <span ng-class="{1: 'strike', 0: 'nonstrike'}[x.status]" ng-hide="x.edit">
+                        {{x.title}}
+                    </span>
+                    <input type="text" id="edit-input-{{x.id}}" class="form-control" placeholder="待辦事項..." ng-show="x.edit">
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default" ng-click="done(x)" ng-hide="x.status">完成</button>
+                    <!--                    <button type="button" class="btn btn-default" ng-click="undo(x)" ng-hide="x.status">未完成</button>-->
+                    <button type="button" class="btn btn-default" ng-click="edit(x)" ng-hide="x.edit">修改</button>
+                    <button type="button" class="btn btn-default" ng-click="save(x)" ng-show="x.edit">儲存</button>
+                    <button type="button" class="btn btn-default" ng-click="remove(x)">移除</button>
+
+                </td>
+            </tr>
+            <tr>
+                <form class="todolistForm" name="todolistForm">
+                    <td colspan="2">
+                        <input type="text" class="form-control" placeholder="待辦事項..." ng-model="newTodo" required>
+                    </td>
+                    <td>
+                        <input type="submit" value="新增" ng-click="addTodo(newTodo)">
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script type="text/JavaScript" src="components/angular/angular.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

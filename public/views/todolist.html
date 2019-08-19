@@ -28,21 +28,48 @@
 
 
 
+            <div>
+                <form>
+                    <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
+                    <input type="text" placeholder="待辦事項..." ng-model="newTodo.todoDescription" required>
+                    <button ng-click="addTodo()">新增</button>
+                </form>
+            </div>
 
-            <form>
-                <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
-                <input type="text" placeholder="待辦事項..." ng-model="newTodo.todoDescription" required>
-                <button ng-click="addTodo()">新增</button>
-            </form>
 
-            <ul>
-                <li class="todoItem" ng-repeat="item in todoItem track by $index" ng-model="todoItem">
-                    <input type="checkbox" ng-model="item.status" ng-change="save()">
-                    <span class="complete-{{item.status}}">{{item.description}}</span>
-                    <!--<button ng-click="deleteTodo($index)">刪除</button>-->
-                    <input type="button" ng-click="deleteTodo($index)" value="刪除">
-                </li>
-            </ul>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+<!--                            <th class="number">#</th>-->
+                            <th class="title">項目</th>
+                            <th class="action">動作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in todoItem track by $index" ng-model="todoItem"
+                            ng-if="item.date == todayFormat">
+                            <td>
+                                <input type="checkbox" ng-model="item.status" ng-change="save()">
+                                <span class="complete-{{item.status}}">{{item.description}}</span>
+                            </td>
+                            <td>
+                                <input type="button" ng-click="deleteTodo($index)" value="刪除">
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+<!--            <ul>-->
+<!--                <li class="todoItem" ng-repeat="item in todoItem track by $index" ng-model="todoItem">-->
+<!--                    <input type="checkbox" ng-model="item.status" ng-change="save()">-->
+<!--                    <span class="complete-{{item.status}}">{{item.description}}</span>-->
+<!--                    &lt;!&ndash;<button ng-click="deleteTodo($index)">刪除</button>&ndash;&gt;-->
+<!--                    <input type="button" ng-click="deleteTodo($index)" value="刪除">-->
+<!--                </li>-->
+<!--            </ul>-->
         </div>
     </div>
 

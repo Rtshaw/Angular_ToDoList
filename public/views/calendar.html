@@ -1,7 +1,12 @@
 <div ng-app="App">
-    <div ng-controller="todoController">
-        <h1>Calendar</h1>
-        <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
+    <div ng-controller="dayController">
+<!--        <h1>Calendar</h1>-->
+<!--        <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>-->
+        <div ng-repeat="day in dayList">
+<!--            {{dayList}}-->
+            {{day.date}}<br> {{day.description}}
+        </div>
+
     </div>
 
 

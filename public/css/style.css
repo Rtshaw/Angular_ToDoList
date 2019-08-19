@@ -2,3 +2,11 @@
     text-decoration: line-through;
     color: #bebebe;
 }
+
+.table th.number{
+    width:20%
+}
+
+.table th.title{
+    width:50%
+}

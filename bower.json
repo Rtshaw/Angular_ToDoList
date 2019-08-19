@@ -1,10 +1,10 @@
 {
-  "name": "ToDoList",
+  "name": "todolist",
+  "description": "practice",
+  "main": "",
   "authors": [
     "shelley"
   ],
-  "description": "",
-  "main": "",
   "license": "MIT",
   "homepage": "",
   "private": true,
@@ -12,6 +12,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    "public/components",
     "test",
     "tests"
   ],

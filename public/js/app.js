@@ -1,46 +1,132 @@
-var App = angular.module("App", []);
+(function (angular) {
+    angular.module("App", ['ui.router'])
+        // .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+        //     $routeProvider
+        //         .when('/', {templateUrl:'index.html'})
+        //         .when('/calendar', {templateUrl :'views/calendar.html'});
+        //         // .otherwise({ redirectTo: '/index.html' })
+        //     $locationProvider.html5Mode(true);
+        //     // $locationProvider.hashPrefix('!');
+        // }])
+        .config(function ($stateProvider) {
+            var todolistState = {
+                name: 'todolist',
+                url: '/todolist',
+                templateUrl: 'views/todolist.html'
+            };
+            var dayState = {
+                name: 'calendar',
+                url: '/calendar',
+                templateUrl: 'views/calendar.html'
+            };
+            $stateProvider.state(todolistState);
+            $stateProvider.state(dayState);
+        })
+    .controller("todoController", function($scope){
+        // $scope.data = {
+        //     message : "Hello"
+        // };
 
-App.controller('todosControl', function ($scope) {
-    $scope.master = undefined;
-    $scope.todos = [];
-    $scope.counter = $scope.todos.length;
+        $scope.today = new Date();
+        $scope.saved = localStorage.getItem('todoItems');
+        $scope.todoItem = (localStorage.getItem('todoItems') !== null)?
+            // JSON.parse($scope.saved) : [{
+            //     description: "",
+            //     date: $scope.today.getFullYear() + " 年 " + $scope.today.getMonth() + " 月 " + $scope.today.getDate() + " 日",
+            //     status: false,
+            // }];
+            JSON.parse($scope.saved) : [];
+        localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
 
-    // new todos
-    $scope.addTodo = function (newTodo) {
-        var newInput = angular.copy(newTodo),
-            newTodo = { id: $scope.counter+1, title: newInput, status: 0 };
-        if(newTodo.title !== undefined){
-            $scope.todos.push(newTodo);
-            $scope.counter++;
-            $scope.reset();
+
+        // newTodo obj
+        $scope.newTodo = {};
+        $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+        $scope.newTodo.todoDescription = "";
+
+        // add
+        $scope.addTodo = function () {
+            if($scope.newTodo.todoDescription === '' || $scope.newTodo.todoDate === ''){
+                console.log('Nothing');
+            }else{
+                $scope.todoItem.push({
+                    description: $scope.newTodo.todoDescription,
+                    date: $scope.newTodo.todoDate,
+                    status: false,
+                });
+
+                $scope.save();
+                $scope.newTodo.todoDescription = "";
+                $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+            }
+        };
+
+        // delete
+        $scope.deleteTodo = function(index){
+            $scope.todoItem.splice(index, 1);
+            $scope.save();
+        };
+
+        $scope.save = function () {
+            localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
         }
-    };
+    });
+})(window.angular);
 
-    // reset input field
-    $scope.reset = function () {
-        $scope.newTodo = angular.copy($scope.master);
-    };
-
-    $scope.edit = function(todo){
-        var thisTodo = todo;
-        thisTodo.edit = true;
-        document.getElementById('edit-input-' + this.id).value = thisTodo.title;
-    };
-
-    $scope.save = function (todo, obj) {
-        var thisTodo = todo,
-            thisInputValue = document.getElementById('edit-input-' + thisTodo.id).value;
-
-        if(thisInputValue !== ''){
-            thisTodo.edit = false;
-            thisTodo.title = thisInputValue;
-        }
-    };
-
-    $scope.totalCount = function () {
-        return $scope.todos.length;
-
-    }
-
-
-});
+// var App = angular.module("App", ['ngRoute']);
+//
+// App.controller("todoController", function($scope){
+//     // $scope.data = {
+//     //     message : "Hello"
+//     // };
+//
+//     $scope.today = new Date();
+//     $scope.saved = localStorage.getItem('todoItems');
+//     $scope.todoItem = (localStorage.getItem('todoItems') !== null)?
+//         // JSON.parse($scope.saved) : [{
+//         //     description: "",
+//         //     date: $scope.today.getFullYear() + " 年 " + $scope.today.getMonth() + " 月 " + $scope.today.getDate() + " 日",
+//         //     status: false,
+//         // }];
+//         JSON.parse($scope.saved) : [];
+//     localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
+//
+//
+//     // newTodo obj
+//     $scope.newTodo = {};
+//     $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+//     $scope.newTodo.todoDescription = "";
+//
+//     // add
+//     $scope.addTodo = function () {
+//         if($scope.newTodo.todoDescription === '' || $scope.newTodo.todoDate === ''){
+//             console.log('Nothing');
+//         }else{
+//             $scope.todoItem.push({
+//                 description: $scope.newTodo.todoDescription,
+//                 date: $scope.newTodo.todoDate,
+//                 status: false,
+//             });
+//
+//             $scope.save();
+//             $scope.newTodo.todoDescription = "";
+//             $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+//         }
+//     };
+//
+//     // delete
+//     $scope.deleteTodo = function(index){
+//       $scope.todoItem.splice(index, 1);
+//       $scope.save();
+//     };
+//
+//     $scope.save = function () {
+//         localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
+//     }
+// });
+// App.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+//     $routeProvider
+//         .when('/', {template:'index.html'})
+//         .when('/calendar', {template:'calendar.html'});
+//     $locationProvider.html5Mode(true);
+// }]);

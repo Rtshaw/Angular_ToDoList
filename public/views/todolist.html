@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDoList</title>
-    <link rel="stylesheet" href="../css/style.css" />
-
+    <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body ng-app="App">
-    <ul>
-        <li><a href="todolist.html">ToDoList</a></li>
-        <li><a href="calendar">日期</a></li>
-    </ul>
-
-    <div ng-view></div>
-
     <div >
         <div ng-controller="todoController">
 
@@ -42,8 +35,6 @@
                 <button ng-click="addTodo()">新增</button>
             </form>
 
-
-
             <ul>
                 <li class="todoItem" ng-repeat="item in todoItem track by $index" ng-model="todoItem">
                     <input type="checkbox" ng-model="item.status" ng-change="save()">
@@ -56,13 +47,7 @@
     </div>
 
 
-
-
     <script type="text/JavaScript" src="../components/angular/angular.js"></script>
-    <script type="text/javascript">
-        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
-    </script>
-    <script src="../components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
 </body>
 </html>

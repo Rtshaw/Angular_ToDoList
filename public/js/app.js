@@ -1,5 +1,5 @@
 (function (angular) {
-    angular.module("App", ['ui.router'])
+    angular.module("App", ['720kb.datepicker', 'ui.router'])
         // .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         //     $routeProvider
         //         .when('/', {templateUrl:'index.html'})
@@ -35,7 +35,11 @@
             // };
 
             $scope.today = new Date();
-            $scope.todayFormat = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+
+            $scope.mm = ($scope.today.getMonth()+1)<10? '0'+($scope.today.getMonth()+1):$scope.today.getMonth()+1;
+            $scope.dd = ($scope.today.getDate())<10? '0'+($scope.today.getDate()) : $scope.today.getDate();
+
+            $scope.todayFormat = $scope.today.getFullYear() + " 年 " + $scope.mm + " 月 " + $scope.dd + " 日";
             $scope.saved = localStorage.getItem('todoItems');
             $scope.todoItem = (localStorage.getItem('todoItems') !== null)?
                 // JSON.parse($scope.saved) : [{
@@ -47,9 +51,11 @@
             localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
 
 
+
+
             // newTodo obj
             $scope.newTodo = {};
-            $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+            $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + $scope.mm + " 月 " + $scope.dd + " 日";
             $scope.newTodo.todoDescription = "";
 
             // add
@@ -70,7 +76,7 @@
 
                     $scope.save();
                     $scope.newTodo.todoDescription = "";
-                    $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + ($scope.today.getMonth()+1) + " 月 " + $scope.today.getDate() + " 日";
+                    $scope.newTodo.todoDate = $scope.today.getFullYear() + " 年 " + $scope.mm + " 月 " + $scope.dd + " 日";
                 }
             };
 
@@ -84,11 +90,30 @@
                 localStorage.setItem('todoItems', JSON.stringify($scope.todoItem));
             }
         })
-        .controller("dayController", function ($scope) {
+        .controller("dateController", function ($scope) {
+            $scope.today = new Date();
+
+            $scope.mm = ($scope.today.getMonth()+1)<10? '0'+($scope.today.getMonth()+1):$scope.today.getMonth()+1;
+            $scope.dd = ($scope.today.getDate())<10? '0'+($scope.today.getDate()) : $scope.today.getDate();
+
+            $scope.todayFormat = $scope.today.getFullYear() + " 年 " + $scope.mm + " 月 " + $scope.dd + " 日";
             $scope.saved = localStorage.getItem('todoItems');
             $scope.dayList = (localStorage.getItem('todoItems')!==null)?
                 JSON.parse($scope.saved):[];
             console.log($scope.dayList);
+
+            // date obj
+            $scope.chooseDay = {};
+            $scope.chooseDay.Date = "";
+
+            $scope.chosen = function () {
+                if($scope.chooseDay.Date == ''){
+                    console.log('Empty');
+                }else{
+                    console.log($scope.chooseDay.Date);
+                }
+            }
+
         });
 })(window.angular);
 

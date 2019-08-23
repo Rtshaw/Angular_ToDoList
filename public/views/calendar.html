@@ -1,14 +1,14 @@
+<link rel="stylesheet" href="css/style.css" />
+
 <div ng-app="App">
-
-
 
     <div ng-controller="dateController">
 <!--        <h1>Calendar</h1>-->
 <!--        <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>-->
 
-        <datepicker date-format="yyyy 年 MM 月 dd 日" selector="form-control">
+        <datepicker date-format="yyyy 年 MM 月 dd 日" selector="form-control" date-set="{{today.toString()}}">
             <div class="input-group">
-                <input class="form-control" placeholder="選擇哪一天..." ng-model="chooseDay.Date" />
+                <input class="form-control" ng-model="chooseDay.Date" />
                 <span class="input-group-addon" style="cursor: pointer">
                     <i class="fa fa-lg fa-calendar"></i>
                 </span>
@@ -17,17 +17,16 @@
         </datepicker>
 
 
-
         <div ng-repeat="day in dayList" ng-if="day.date == chooseDay.Date">
             <div>
-                {{day.description}}
+                <span class="complete-{{day.status}}">{{day.description}}</span>
+                <!--{{day.description}}-->
+                <span ng-if="day.status==false">未完成</span>
+                <span ng-if="day.status==true">已完成</span>
                 <!--<span ng-if="day.status==false"></span>-->
             </div>
-
         </div>
-
     </div>
-
 
 
 </div>

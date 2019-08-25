@@ -28,11 +28,13 @@
 
 
 
-            <div>
+            <div class="add">
                 <form>
-                    <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
-                    <input type="text" placeholder="待辦事項..." ng-model="newTodo.todoDescription" required>
-                    <button ng-click="addTodo()">新增</button>
+                    <div class="date" ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
+                    <div class="input">
+                        <input type="text" class="insert" placeholder="待辦事項..." ng-model="newTodo.todoDescription" required>
+                        <button class="button" ng-click="addTodo()">新增</button>
+                    </div>
                 </form>
             </div>
 

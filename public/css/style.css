@@ -10,3 +10,94 @@
 .table th.title{
     width:50%
 }
+
+.tab {
+    padding: 50px 0px;
+}
+
+body {
+    min-height: 100vh;
+    /*background: rgb(201, 212, 203);*/
+    background: #f7e3d9;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    /*margin-top: 200px;*/
+}
+
+.title {
+    word-spacing: 20px;
+}
+
+.date {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    outline: none;
+}
+
+.input .insert {
+    width: 150px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+}
+
+.input input.insert {
+    width: 240px;
+    height: 30px;
+    line-height: 40px;
+    text-indent: 6px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.button {
+    border: none;
+    padding: 6px 8px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: lightskyblue;
+    font-size: 14px;
+}
+
+.button:hover{
+    border: 2px solid lightskyblue;
+    background-color: #f7e3d9;
+}
+
+.todo {
+    width: 300px;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    border-radius: 3px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 10px;
+    /*display: flex;*/
+    align-items: center;
+}
+
+.todosta {
+    float: right;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.calendar {
+    width: 300px;
+    margin-top: 10px;
+}
+
+.add {
+    width: 300px;
+}

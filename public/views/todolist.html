@@ -9,25 +9,6 @@
 <body ng-app="App">
     <div >
         <div ng-controller="todoController">
-
-            <!--<div>-->
-            <!--<table class="table">-->
-            <!--<thead>-->
-            <!--<tr>-->
-            <!--<th class="title">項目</th>-->
-            <!--<th class="action">動作</th>-->
-            <!--</tr>-->
-            <!--</thead>-->
-            <!--<tbody>-->
-            <!--<tr ng-repeat="x in todoItem" ng-model="todoItem">-->
-            <!--<input type="checkbox" ng-model="x.status" ng-change="save()">-->
-            <!--</tr>-->
-            <!--</tbody>-->
-            <!--</table>-->
-            <!--</div>-->
-
-
-
             <div class="add">
                 <form>
                     <div class="date" ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>
@@ -37,13 +18,10 @@
                     </div>
                 </form>
             </div>
-
-
             <div>
                 <table class="table">
                     <thead>
                         <tr>
-<!--                            <th class="number">#</th>-->
                             <th class="title">項目</th>
                             <th class="action">動作</th>
                         </tr>
@@ -58,20 +36,10 @@
                             <td>
                                 <input type="button" ng-click="deleteTodo($index)" value="刪除">
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-<!--            <ul>-->
-<!--                <li class="todoItem" ng-repeat="item in todoItem track by $index" ng-model="todoItem">-->
-<!--                    <input type="checkbox" ng-model="item.status" ng-change="save()">-->
-<!--                    <span class="complete-{{item.status}}">{{item.description}}</span>-->
-<!--                    &lt;!&ndash;<button ng-click="deleteTodo($index)">刪除</button>&ndash;&gt;-->
-<!--                    <input type="button" ng-click="deleteTodo($index)" value="刪除">-->
-<!--                </li>-->
-<!--            </ul>-->
         </div>
     </div>
 

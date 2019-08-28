@@ -2,8 +2,6 @@
 
 <div ng-app="App">
     <div ng-controller="dateController">
-<!--        <h1>Calendar</h1>-->
-<!--        <div ng-model="newTodo.todoDate">{{newTodo.todoDate}}</div>-->
         <div class="calendar">
             <datepicker date-format="yyyy 年 MM 月 dd 日" selector="form-control" date-set="{{today.toString()}}">
                 <div class="input-group">
@@ -11,7 +9,6 @@
                     <span class="input-group-addon" style="cursor: pointer">
                     <i class="fa fa-lg fa-calendar"></i>
                 </span>
-                    <!--<span><button ng-click="chosen()">選擇</button></span>-->
                 </div>
             </datepicker>
         </div>
@@ -21,16 +18,13 @@
             <div ng-repeat="day in dayList" ng-if="day.date == chooseDay.Date">
                 <div class="todo bg-light">
                     <span class="complete-{{day.status}}">{{day.description}}</span>
-                    <!--{{day.description}}-->
                     <span class="todosta" ng-if="day.status==false">未完成</span>
                     <span class="todosta complete-{{day.status}}" ng-if="day.status==true">已完成</span>
-                    <!--<span ng-if="day.status==false"></span>-->
                 </div>
             </div>
         </div>
 
     </div>
-
 
 </div>
 

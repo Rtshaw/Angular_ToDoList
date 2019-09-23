@@ -54,7 +54,7 @@ input {
 
 .input input.insert {
     width: 240px;
-    height: 30px;
+    height: 40px;
     line-height: 40px;
     text-indent: 6px;
     font-size: 16px;
@@ -67,7 +67,6 @@ input {
     text-align: center;
     border-radius: 4px;
     background-color: lightskyblue;
-    font-size: 14px;
 }
 
 .button:hover{
